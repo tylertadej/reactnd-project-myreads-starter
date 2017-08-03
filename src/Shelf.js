@@ -3,9 +3,14 @@ import Book from './Book'
 import * as BooksAPI from './BooksAPI'
 
 class Shelf extends Component {
+  moveBook = (book, shelfId) => {
+    BooksAPI.update(book, shelfId).then(() => {
+      console.log(`${book.title} has been moved to ${shelfId}`);
+    })
+  }
 
   render() {
-    const { shelves, shelf, books, onBookMove } = this.props;
+    const { shelves, shelf, books } = this.props;
     const booksOnShelf = books.filter(book => book.shelf === `${shelf.id}`);
 
     return (
