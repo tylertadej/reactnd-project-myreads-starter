@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import Book from './Book'
-import * as BooksAPI from './BooksAPI'
 
 class Shelf extends Component {
-  moveBook = (book, shelfId) => {
-    BooksAPI.update(book, shelfId).then(() => {
-      console.log(`${book.title} has been moved to ${shelfId}`);
-    })
-  }
 
   render() {
-    const { shelves, shelf, books } = this.props;
+    const { shelves, shelf, books, onMoveBook } = this.props;
     const booksOnShelf = books.filter(book => book.shelf === `${shelf.id}`);
 
     return (
@@ -23,7 +17,7 @@ class Shelf extends Component {
                 <Book
                   shelves={shelves}
                   book={book}
-                  onBookMove={this.moveBook}
+                  onMoveBook={onMoveBook}
                 />
               </li>
             )}

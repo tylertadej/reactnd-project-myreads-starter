@@ -4,7 +4,7 @@ import Shelf from './Shelf'
 class ListBooks extends Component {
 
   render() {
-    const { books } = this.props;
+    const { books, onMoveBook } = this.props;
 
     const shelves = [
       {
@@ -34,6 +34,7 @@ class ListBooks extends Component {
                   shelves={shelves}
                   shelf={shelf}
                   books={books}
+                  onMoveBook={onMoveBook}
                 />
               </div>
             )}

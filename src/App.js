@@ -14,6 +14,14 @@ class BooksApp extends React.Component {
     })
   }
 
+  moveBook = (book, shelfId) => {
+    BooksAPI.update(book, shelfId).then((shelves) => {
+      book.shelf = shelfId
+      this.setState(state => ({
+        books: this.state.books.filter(b => b.id !== book.id).concat([ book ])
+      }))
+    })
+  }
 
   // state = {
   //   /**
@@ -31,6 +39,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <ListBooks
             books={this.state.books}
+            onMoveBook={this.moveBook}
           />
         )}/>
       </div>
